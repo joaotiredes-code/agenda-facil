@@ -51,9 +51,9 @@ docs/            # documentação do projeto (organizada por Situação-Problema
 ## Documentação
 | Arquivo | Conteúdo | Situação |
 |---------|----------|----------|
-| `docs/01-escopo-requisitos.md` | Escopo, requisitos, regras de negócio, arquitetura | 1 |
-| `docs/02-modelagem-uml.md` | Casos de uso, classes, sequência, atividades, estados | 1 |
-| `docs/03-ihc.md` | Princípios de IHC, telas, mensagens, protótipo | 1 |
+| `docs/situacao-1-planejamento` | Escopo, requisitos, regras de negócio, arquitetura | 1 |
+| `docs/situacao-2-desenvolvimento` | Casos de uso, classes, sequência, atividades, estados | 1 |
+| `docs/situacao-3-testes-validacao` | Princípios de IHC, telas, mensagens, protótipo | 1 |
 | `docs/04-banco-de-dados.md` | Projeto conceitual, lógico (normalizado) e físico | 1 |
 | `docs/05-dicionario-dados.md` | Dicionário de dados | 1 |
 | `docs/06-plano-de-testes.md` | Verificação e validação | 2 e 3 |
