@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block titulo %}Página não encontrada{% endblock %}
+{% block conteudo %}
+<section class="cartao centro">
+  <h1>Página não encontrada</h1>
+  <p>O endereço acessado não existe ou o registro foi removido.</p>
+  <a class="botao" href="{{ url_for('main.index') }}">Voltar ao início</a>
+</section>
+{% endblock %}

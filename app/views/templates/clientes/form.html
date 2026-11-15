@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block titulo %}{{ 'Editar' if editando else 'Novo' }} cliente{% endblock %}
+{% block conteudo %}
+<h1>{{ 'Editar cliente' if editando else 'Novo cliente' }}</h1>
+<section class="cartao">
+<form method="post" novalidate>
+  <div class="campo">
+    <label for="nome">Nome completo *</label>
+    <input type="text" id="nome" name="nome" value="{{ cliente.nome or '' }}" required minlength="3" autofocus>
+  </div>
+  <div class="campo">
+    <label for="email">E-mail *</label>
+    <input type="email" id="email" name="email" value="{{ cliente.email or '' }}" required placeholder="nome@dominio.com">
+  </div>
+  <div class="campo">
+    <label for="telefone">Telefone (com DDD) *</label>
+    <input type="tel" id="telefone" name="telefone" value="{{ cliente.telefone or '' }}" required placeholder="(51) 99999-9999" data-mascara="telefone">
+    <small>Informe 10 ou 11 dígitos.</small>
+  </div>
+  <div class="botoes">
+    <button type="submit" class="botao">Salvar</button>
+    <a class="botao botao-secundario" href="{{ url_for('clientes.lista') }}">Cancelar</a>
+  </div>
+</form>
+</section>
+{% endblock %}

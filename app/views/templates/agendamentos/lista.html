@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block titulo %}Agendamentos{% endblock %}
+{% block conteudo %}
+<div class="cabecalho-secao">
+  <h1>Agendamentos</h1>
+  <a class="botao" href="{{ url_for('agendamentos.novo') }}">+ Novo agendamento</a>
+</div>
+
+<form class="filtros" method="get">
+  <div class="campo">
+    <label for="data">Data</label>
+    <input type="date" id="data" name="data" value="{{ filtros.data }}">
+  </div>
+  <div class="campo">
+    <label for="profissional_id">Profissional</label>
+    <select id="profissional_id" name="profissional_id">
+      <option value="">Todos</option>
+      {% for p in profissionais %}
+        <option value="{{ p.id }}" {{ 'selected' if filtros.profissional_id == p.id }}>{{ p.nome }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="campo">
+    <label for="status">Situação</label>
+    <select id="status" name="status">
+      <option value="">Todas</option>
+      {% for valor, rotulo in [('agendado','Agendado'),('concluido','Concluído'),('cancelado','Cancelado')] %}
+        <option value="{{ valor }}" {{ 'selected' if filtros.status == valor }}>{{ rotulo }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <button type="submit" class="botao botao-secundario">Filtrar</button>
+  <a class="botao botao-secundario" href="{{ url_for('agendamentos.lista') }}">Limpar</a>
+</form>
+
+<section class="cartao">
+{% if agendamentos %}
+<div class="tabela-rolagem">
+<table>
+  <thead><tr><th>Data e hora</th><th>Cliente</th><th>Serviço</th><th>Profissional</th><th>Valor</th><th>Situação</th><th>Ações</th></tr></thead>
+  <tbody>
+  {% for a in agendamentos %}
+    <tr>
+      <td>{{ a.inicio | datahora }} – {{ a.fim[11:] }}</td>
+      <td>{{ a.cliente_nome }}</td>
+      <td>{{ a.servico_nome }}</td>
+      <td>{{ a.profissional_nome }}</td>
+      <td>{{ a.preco | brl }}</td>
+      <td><span class="selo selo-{{ a.status }}">{{ a.status | capitalize }}</span></td>
+      <td class="acoes">
+        {% if a.status == 'agendado' %}
+          <form method="post" action="{{ url_for('agendamentos.concluir', agendamento_id=a.id) }}">
+            <button type="submit" class="botao botao-pequeno botao-secundario">Concluir</button>
+          </form>
+          <form method="post" action="{{ url_for('agendamentos.cancelar', agendamento_id=a.id) }}" data-confirmar="Cancelar o agendamento de {{ a.cliente_nome }}?">
+            <button type="submit" class="botao botao-pequeno botao-perigo">Cancelar</button>
+          </form>
+        {% else %}—{% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% else %}
+  <p class="vazio">Nenhum agendamento encontrado.</p>
+{% endif %}
+</section>
+{% endblock %}

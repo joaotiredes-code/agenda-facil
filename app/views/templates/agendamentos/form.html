@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block titulo %}Novo agendamento{% endblock %}
+{% block conteudo %}
+<h1>Novo agendamento</h1>
+<section class="cartao">
+<form method="post" id="form-agendamento" novalidate
+      data-url-profissionais="{{ url_for('profissionais.por_servico', servico_id=0) }}"
+      data-url-horarios="{{ url_for('agendamentos.horarios') }}"
+      data-profissional-atual="{{ dados.get('profissional_id', '') }}"
+      data-horario-atual="{{ dados.get('horario', '') }}">
+  <div class="campo">
+    <label for="cliente_id">Cliente *</label>
+    <select id="cliente_id" name="cliente_id" required>
+      <option value="">Selecione…</option>
+      {% for c in clientes %}
+        <option value="{{ c.id }}" {{ 'selected' if dados.get('cliente_id') == c.id|string }}>{{ c.nome }}</option>
+      {% endfor %}
+    </select>
+    {% if not clientes %}<small>Nenhum cliente cadastrado. <a href="{{ url_for('clientes.novo') }}">Cadastrar cliente</a></small>{% endif %}
+  </div>
+
+  <div class="campo">
+    <label for="servico_id">Serviço *</label>
+    <select id="servico_id" name="servico_id" required>
+      <option value="">Selecione…</option>
+      {% for s in servicos %}
+        <option value="{{ s.id }}" {{ 'selected' if dados.get('servico_id') == s.id|string }}>{{ s.nome }} · {{ s.duracao_min }} min · {{ s.preco | brl }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="campo">
+    <label for="profissional_id">Profissional *</label>
+    <select id="profissional_id" name="profissional_id" required disabled>
+      <option value="">Escolha primeiro o serviço</option>
+    </select>
+  </div>
+
+  <div class="linha">
+    <div class="campo">
+      <label for="data">Data *</label>
+      <input type="date" id="data" name="data" min="{{ hoje }}" value="{{ dados.get('data', '') }}" required>
+    </div>
+    <div class="campo">
+      <label for="horario">Horário *</label>
+      <select id="horario" name="horario" required disabled>
+        <option value="">Escolha serviço, profissional e data</option>
+      </select>
+      <small id="aviso-horarios" aria-live="polite"></small>
+    </div>
+  </div>
+
+  <div class="campo">
+    <label for="observacao">Observações</label>
+    <textarea id="observacao" name="observacao" rows="2">{{ dados.get('observacao', '') }}</textarea>
+  </div>
+
+  <div class="botoes">
+    <button type="submit" class="botao">Confirmar agendamento</button>
+    <a class="botao botao-secundario" href="{{ url_for('agendamentos.lista') }}">Cancelar</a>
+  </div>
+</form>
+</section>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/agendamento.js') }}"></script>
+{% endblock %}

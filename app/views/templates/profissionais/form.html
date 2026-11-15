@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block titulo %}{{ 'Editar' if editando else 'Novo' }} profissional{% endblock %}
+{% block conteudo %}
+<h1>{{ 'Editar profissional' if editando else 'Novo profissional' }}</h1>
+<section class="cartao">
+<form method="post" novalidate>
+  <div class="campo">
+    <label for="nome">Nome *</label>
+    <input type="text" id="nome" name="nome" value="{{ profissional.nome or '' }}" required minlength="3" autofocus>
+  </div>
+  <div class="campo">
+    <label for="especialidade">Especialidade</label>
+    <input type="text" id="especialidade" name="especialidade" value="{{ profissional.especialidade or '' }}" maxlength="60">
+  </div>
+  <fieldset class="campo">
+    <legend>Serviços que realiza</legend>
+    {% for s in servicos %}
+      <div class="campo-check">
+        <input type="checkbox" id="serv{{ s.id }}" name="servicos" value="{{ s.id }}" {{ 'checked' if s.id in selecionados else '' }}>
+        <label for="serv{{ s.id }}">{{ s.nome }} ({{ s.duracao_min }} min)</label>
+      </div>
+    {% else %}
+      <p class="vazio">Cadastre serviços antes de vincular ao profissional.</p>
+    {% endfor %}
+  </fieldset>
+  <div class="campo campo-check">
+    <input type="checkbox" id="ativo" name="ativo" value="1" {{ 'checked' if profissional.ativo else '' }}>
+    <label for="ativo">Profissional ativo</label>
+  </div>
+  <div class="botoes">
+    <button type="submit" class="botao">Salvar</button>
+    <a class="botao botao-secundario" href="{{ url_for('profissionais.lista') }}">Cancelar</a>
+  </div>
+</form>
+</section>
+{% endblock %}

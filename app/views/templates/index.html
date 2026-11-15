@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block titulo %}Início{% endblock %}
+{% block conteudo %}
+<h1>Painel</h1>
+<section class="indicadores" aria-label="Indicadores">
+  <div class="indicador"><span class="numero">{{ resumo.hoje }}</span><span>Agendamentos hoje</span></div>
+  <div class="indicador"><span class="numero">{{ resumo.proximos }}</span><span>Próximos agendamentos</span></div>
+  <div class="indicador"><span class="numero">{{ resumo.clientes }}</span><span>Clientes</span></div>
+  <div class="indicador"><span class="numero">{{ resumo.profissionais }}</span><span>Profissionais ativos</span></div>
+  <div class="indicador"><span class="numero">{{ resumo.servicos }}</span><span>Serviços ativos</span></div>
+</section>
+
+<section class="cartao">
+  <div class="cabecalho-secao">
+    <h2>Agenda de hoje</h2>
+    <a class="botao" href="{{ url_for('agendamentos.novo') }}">+ Novo agendamento</a>
+  </div>
+  {% if agenda_hoje %}
+  <div class="tabela-rolagem">
+  <table>
+    <thead><tr><th>Horário</th><th>Cliente</th><th>Serviço</th><th>Profissional</th></tr></thead>
+    <tbody>
+    {% for a in agenda_hoje %}
+      <tr>
+        <td>{{ a.inicio[11:] }} – {{ a.fim[11:] }}</td>
+        <td>{{ a.cliente_nome }}</td>
+        <td>{{ a.servico_nome }}</td>
+        <td>{{ a.profissional_nome }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  {% else %}
+    <p class="vazio">Nenhum atendimento agendado para hoje.</p>
+  {% endif %}
+</section>
+{% endblock %}

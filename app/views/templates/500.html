@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block titulo %}Erro interno{% endblock %}
+{% block conteudo %}
+<section class="cartao centro">
+  <h1>Algo deu errado</h1>
+  <p>Ocorreu um erro inesperado. Tente novamente em instantes.</p>
+  <a class="botao" href="{{ url_for('main.index') }}">Voltar ao início</a>
+</section>
+{% endblock %}
