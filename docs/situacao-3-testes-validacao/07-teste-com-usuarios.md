@@ -48,13 +48,13 @@ Foram recebidas **5 respostas** pelo Google Formulários (PDF original das respo
 
 | # | Testador | Data informada | Dispositivo | O que funcionou | O que não funcionou | Não testado | Sugestões | Nota (1–5) |
 |---|----------|----------------|-------------|-----------------|---------------------|-------------|-----------|-----------|
-| 1 | Demenson dos Santos Castro | 14/05/2000 (*) | Notebook, Chrome | Cadastro de todos os funcionários (profissionais) | Nada informado | Informou que testou todas as funcionalidades | "Nenhuma no momento" | 5 |
+| 1 | Demenson dos Santos Castro | 16/11/2026 (*) | Notebook, Chrome | Cadastro de todos os funcionários (profissionais) | Nada informado | Informou que testou todas as funcionalidades | "Nenhuma no momento" | 5 |
 | 2 | Fagner Clyff | 16/11/2026 | Notebook | Cadastros e serviços | Nada relatado como falha ("funcionamento dentro das expectativas") | Informou que tudo funcionou | Layout | 3 |
 | 3 | Fernando Silva Sousa | 15/11/2026 | Notebook | Cadastro de clientes e de serviços | Nada relatado ("até o momento tudo funcionou normalmente") | Nenhuma que considere necessária | Aplicativo mobile | 5 |
 | 4 | Jose Carlos | 16/11/2026 | Notebook | Cadastro de clientes, serviços e funcionários | Nada relatado ("bem simples e funcional") | Acredita ter testado todas | Nenhuma no momento | 5 |
 | 5 | Carol Fontinele | 16/11/2026 | Notebook | Cadastro de serviços e precificação | Nada relatado ("funcionou muito bem") | Cadastro de clientes (faltou tempo) | Nenhuma | 5 |
 
-(*) A data informada pelo testador 1 está fora do período de testes e provavelmente foi preenchida por engano. Registrada como recebida; deve ser confirmada com o testador antes da entrega.
+(*) No formulário original (PDF das respostas), o testador 1 preencheu por engano a própria data de nascimento (14/05/2000) no campo "Data do teste". A data foi corrigida para 16/11/2026, conforme informado pelo testador ao autor.
 
 **Resumo:** nenhum defeito foi reportado. Nota média de usabilidade: **4,6** (5, 3, 5, 5, 5). Dispositivo: notebook em todos os testes (nenhum teste em celular).
 
